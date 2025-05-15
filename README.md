@@ -4,6 +4,47 @@ Non-verbal reasoning tests allow evaluators to test a diverse set of abilities i
 
 The website is currently hosted [here](https://nvr-quiz.azurewebsites.net)
 
+# Docker Compose Instructions- FORK
+
+Replaces the instructions below - everything runs in docker this way.
+
+```sh
+# clone the repository
+git clone https://github.com/slovely/non-verbal-reasoning.git
+
+# enter project root directory
+cd non-verbal-reasoning
+
+# NOTE: if you want to change the DB credentials, modify ./src/webapp/mysql_utils.py AND ./docker-compose.yml NOW
+# I've also set the host port to be 801, change as required in docker-compose.yml
+
+# spin up the DB first so that we can create the database:
+docker compose up db -d
+
+# Run the db_dump.sql to setup the database:
+docker compose exec -it db bash
+
+# (now inside the container - if password was changed above, use it here)
+mysql --password=P@ssW0rd
+
+# now in mysql run
+/. /tmp/db_dump.sql
+
+# exit mysql
+exit
+
+# exit container
+exit
+
+# now spin up the app
+docker compose up -d
+
+Browse http://localhost:801/
+
+Ignore the instructions below
+
+```
+
 # Setup Instruction
 
 It is preferable to run the application within docker to ensure all dependencies are met.
