@@ -28,7 +28,7 @@ docker compose exec -it db bash
 mysql --password=P@ssW0rd
 
 # now in mysql run
-/. /tmp/db_dump.sql
+\. /tmp/db_dump.sql
 
 # exit mysql
 exit
