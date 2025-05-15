@@ -4,22 +4,22 @@ from mysql.connector import errorcode, Error
 class MySQL:
     def __init__(self):
         self.conn = mysql.connector.connect(
-                host="<HOST_NAME>",
-                port="<PORT_NUMBER>",
-                database="<DB_NAME>",
-                user="<USER_NAME>",
-                password="<PASSWORD>"
+                host="db",
+                port="3306",
+                database="non_verbal_reasoning",
+                user="root",
+                password="P@ssW0rd"
         )
 
         self.curr = self.conn.cursor(buffered=True, dictionary=True)
     
     def create_connection(self):
         self.conn = mysql.connector.connect(
-                host="<HOST_NAME>",
-                port="<PORT_NUMBER>",
-                database="<DB_NAME>",
-                user="<USER_NAME>",
-                password="<PASSWORD>"
+                host="db",
+                port="3306",
+                database="non_verbal_reasoning",
+                user="root",
+                password="P@ssW0rd"
         )
 
     def close_connection(self):

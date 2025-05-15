@@ -1,0 +1,22 @@
+services:
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssW0rd
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      start_period: 3s
+    volumes:
+      - ./scripts/db_dump.sql:/tmp/db_dump.sql
+
+
+  app:
+    build: ./
+    depends_on: 
+      db:
+        condition: service_healthy
+    ports: 
+      - 801:8000
